@@ -214,6 +214,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\app\order\" />
+    <Folder Include="Scripts\app\user\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -232,9 +234,11 @@
     <Content Include="Scripts\main.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\App\app.component.ts" />
-    <TypeScriptCompile Include="Scripts\App\app.module.ts" />
-    <TypeScriptCompile Include="Scripts\App\main.ts" />
+    <TypeScriptCompile Include="Scripts\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="Scripts\app\app.component.ts" />
+    <TypeScriptCompile Include="Scripts\app\app.module.ts" />
+    <TypeScriptCompile Include="Scripts\app\home\home.component.ts" />
+    <TypeScriptCompile Include="Scripts\app\main.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
