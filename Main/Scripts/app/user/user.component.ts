@@ -34,7 +34,6 @@ export class UserComponent implements OnInit {
 
             if (this.newUser) this.userService.create(this.user).subscribe(
                 response => {
-                    console.log(response);
                     this.submitted = false;
                     this.user = new User();
                     this.notification = 'User ' + response.FirstName + ' ' + response.LastName + ' created.';

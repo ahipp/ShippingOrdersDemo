@@ -37,7 +37,6 @@ var UserComponent = (function () {
             this.processing = true;
             if (this.newUser)
                 this.userService.create(this.user).subscribe(function (response) {
-                    console.log(response);
                     _this.submitted = false;
                     _this.user = new user_model_1.User();
                     _this.notification = 'User ' + response.FirstName + ' ' + response.LastName + ' created.';
