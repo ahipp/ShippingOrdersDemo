@@ -1,0 +1,15 @@
+﻿
+<h1>{{(this.newUser) ? 'Create New' : 'Edit'}} User</h1>
+<form #userForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+        First name: <input type="text" [(ngModel)]="user.FirstName" #firstName="ngModel" name="firstName" required />
+        <span *ngIf="submitted && firstName.errors && firstName.errors.required" style="color: red;">* Required</span>
+    </div>
+    <div>
+        Last name: <input type="text" [(ngModel)]="user.LastName" #lastName="ngModel" name="lastName" required />
+        <span *ngIf="submitted && lastName.errors && lastName.errors.required" style="color: red;">* Required</span>
+    </div>
+    <button type="submit" [disabled]="processing">{{processing ? 'Processing' : 'Save'}}</button>
+    <div>{{notification}}</div>
+</form>
+

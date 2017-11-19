@@ -169,6 +169,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\user\user.component.html" />
     <Content Include="Scripts\boot.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -215,7 +216,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\app\order\" />
-    <Folder Include="Scripts\app\user\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -239,6 +239,13 @@
     <TypeScriptCompile Include="Scripts\app\app.module.ts" />
     <TypeScriptCompile Include="Scripts\app\home\home.component.ts" />
     <TypeScriptCompile Include="Scripts\app\main.ts" />
+    <TypeScriptCompile Include="Scripts\app\models\user.model.ts" />
+    <TypeScriptCompile Include="Scripts\app\shared.module.ts" />
+    <TypeScriptCompile Include="Scripts\app\user\user-routing.module.ts" />
+    <TypeScriptCompile Include="Scripts\app\user\user.component.ts" />
+    <TypeScriptCompile Include="Scripts\app\user\user.module.ts" />
+    <TypeScriptCompile Include="Scripts\app\user\user.resolve.ts" />
+    <TypeScriptCompile Include="Scripts\app\user\user.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
