@@ -25,6 +25,9 @@ export class UserComponent implements OnInit {
             this.user = new User();
             this.newUser = true;
         }
+        else {
+            this.userService.userID = +this.route.snapshot.params['id'];
+        }
     }
 
     onSubmit() {
@@ -45,7 +48,7 @@ export class UserComponent implements OnInit {
             else this.userService.edit(this.user).subscribe(
                 response => {
                     this.submitted = false;
-                    this.user = response,
+                    this.user = response;
                     this.notification = 'User ' + response.FirstName + ' ' + response.LastName + ' updated.'
                 },
                 error => this.notification = 'Error submitting data',

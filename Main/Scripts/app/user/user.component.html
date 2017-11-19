@@ -1,5 +1,4 @@
-﻿
-<h1>{{(this.newUser) ? 'Create New' : 'Edit'}} User</h1>
+﻿<h1>{{(this.newUser) ? 'Create New' : 'Edit'}} User</h1>
 <form #userForm="ngForm" (ngSubmit)="onSubmit()">
     <div>
         First name: <input type="text" [(ngModel)]="user.FirstName" #firstName="ngModel" name="firstName" required />

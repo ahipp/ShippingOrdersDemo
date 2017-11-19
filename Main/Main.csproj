@@ -151,12 +151,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\OrderSystemContext.cs" />
     <Compile Include="DAL\OrderSystemInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropdownItem.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,6 +171,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\order\order.component.html" />
     <Content Include="Scripts\app\user\user.component.html" />
     <Content Include="Scripts\boot.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -215,7 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\app\order\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -239,8 +242,16 @@
     <TypeScriptCompile Include="Scripts\app\app.module.ts" />
     <TypeScriptCompile Include="Scripts\app\home\home.component.ts" />
     <TypeScriptCompile Include="Scripts\app\main.ts" />
+    <TypeScriptCompile Include="Scripts\app\models\dropdown-item.model.ts" />
+    <TypeScriptCompile Include="Scripts\app\models\order.model.ts" />
     <TypeScriptCompile Include="Scripts\app\models\user.model.ts" />
+    <TypeScriptCompile Include="Scripts\app\order\order-routing.module.ts" />
+    <TypeScriptCompile Include="Scripts\app\order\order.component.ts" />
+    <TypeScriptCompile Include="Scripts\app\order\order.module.ts" />
+    <TypeScriptCompile Include="Scripts\app\order\order.resolve.ts" />
+    <TypeScriptCompile Include="Scripts\app\order\order.service.ts" />
     <TypeScriptCompile Include="Scripts\app\shared.module.ts" />
+    <TypeScriptCompile Include="Scripts\app\user\user-dropdown-list.resolve.ts" />
     <TypeScriptCompile Include="Scripts\app\user\user-routing.module.ts" />
     <TypeScriptCompile Include="Scripts\app\user\user.component.ts" />
     <TypeScriptCompile Include="Scripts\app\user\user.module.ts" />

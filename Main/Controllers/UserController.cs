@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 using Main.DAL;
 using Main.Models;
 
@@ -11,7 +12,6 @@ namespace Main.Controllers
     {
         private OrderSystemContext db = new OrderSystemContext();
 
-        // GET: User/5
         [HttpGet]
         public ActionResult GetById(int? id)
         {
@@ -27,32 +27,56 @@ namespace Main.Controllers
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: User/Create
-        [HttpPost]
-        public ActionResult Create([Bind(Include = "FirstName,LastName")] User user)
+        [HttpGet]
+        public ActionResult GetDropdownList()
         {
-            if (ModelState.IsValid)
+            List<DropdownItem> dropdownList = db.Users.Select(user => new DropdownItem()
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return Json(user, JsonRequestBehavior.AllowGet);
-            }
+                Value = user.UserID.ToString(),
+                Label = user.FirstName + " " + user.LastName + " (userID: " + user.UserID.ToString() + ")",
+            }).ToList();
 
-            return Json("error", JsonRequestBehavior.AllowGet);
+            return Json(dropdownList, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName")] User user)
+        public ActionResult Create([Bind] UserViewModel userVM)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                User user = new User(userVM);
+
+                db.Users.Add(user);
                 db.SaveChanges();
-                return Json(user, JsonRequestBehavior.AllowGet);
+                return Json(userVM, JsonRequestBehavior.AllowGet);
             }
 
-            return Json("error", JsonRequestBehavior.AllowGet);
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int? id, [Bind] UserViewModel userVM)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (ModelState.IsValid)
+            {
+                User user = db.Users.Find(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                user.PopulateFromVM(userVM);
+
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(userVM, JsonRequestBehavior.AllowGet);
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

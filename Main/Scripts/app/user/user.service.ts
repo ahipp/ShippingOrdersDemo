@@ -2,6 +2,7 @@
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
+import { DropdownItem } from '../models/dropdown-item.model';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -10,8 +11,8 @@ export class UserService {
 
     constructor(private http: Http) { }
 
-    getById(id: number): Observable<User> {
-        return this.http.get('user/getbyid/' + id).map(res => res.json());
+    getById(): Observable<User> {
+        return this.http.get('user/getbyid/' + this.userID).map(res => res.json());
     }
 
     create(user: User): Observable<User> {
@@ -19,6 +20,10 @@ export class UserService {
     }
 
     edit(user: User): Observable<User> {
-        return this.http.post('user/edit', user).map(res => res.json());
+        return this.http.post('user/edit/' + this.userID, user).map(res => res.json());
+    }
+
+    getDropdownList(): Observable<DropdownItem> {
+        return this.http.get('user/getdropdownlist').map(res => res.json());
     }
 }

@@ -1,16 +1,16 @@
 ﻿import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { UserService } from './user.service';
+import { OrderService } from './order.service';
 
 @Injectable()
-export class UserResolve implements Resolve<any> {
+export class OrderResolve implements Resolve<any> {
     constructor(
-        private userService: UserService
+        private orderService: OrderService
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<any> {
-        this.userService.userID = route.params.id;
-        return this.userService.getById();
+        this.orderService.orderID = route.params.id;
+        return this.orderService.getById();
     }
 }

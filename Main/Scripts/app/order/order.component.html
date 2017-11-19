@@ -1,0 +1,36 @@
+﻿<h1>{{(this.newOrder) ? 'Create New' : 'Edit'}} Order</h1>
+<form #orderForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+        User: <select [(ngModel)]="order.UserID" #userID="ngModel" name="userID" required>
+            <option *ngFor="let item of userDropdownList" [ngValue]="item.Value">{{item.Label}}</option>
+        </select>
+        <span *ngIf="submitted && !userID.value" style="color: red;">* Required</span>
+    </div>
+    <div>
+        TrackingID: <input type="text" [(ngModel)]="order.TrackingID" #trackingID="ngModel" name="trackingID" required />
+        <span *ngIf="submitted && trackingID.errors && trackingID.errors.required" style="color: red;">* Required</span>
+    </div>
+    <div>
+        Name: <input type="text" [(ngModel)]="order.Name" #name="ngModel" name="name" required />
+        <span *ngIf="submitted && name.errors && name.errors.required" style="color: red;">* Required</span>
+    </div>
+    <div>
+        Address: <input type="text" [(ngModel)]="order.Address" #address="ngModel" name="address" required />
+        <span *ngIf="submitted && address.errors && address.errors.required" style="color: red;">* Required</span>
+    </div>
+    <div>
+        City: <input type="text" [(ngModel)]="order.City" #city="ngModel" name="city" required />
+        <span *ngIf="submitted && city.errors && city.errors.required" style="color: red;">* Required</span>
+    </div>
+    <div>
+        State: <input type="text" [(ngModel)]="order.State" #state="ngModel" name="state" required />
+        <span *ngIf="submitted && state.errors && state.errors.required" style="color: red;">* Required</span>
+    </div>
+    <div>
+        Zip Code: <input type="text" [(ngModel)]="order.ZipCode" #zipCode="ngModel" name="zipCode" required />
+        <span *ngIf="submitted && zipCode.errors && zipCode.errors.required" style="color: red;">* Required</span>
+    </div>
+    <button type="submit" [disabled]="processing">{{processing ? 'Processing' : 'Save'}}</button>
+    <div>{{notification}}</div>
+</form>
+

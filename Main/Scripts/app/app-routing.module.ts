@@ -9,11 +9,11 @@ import { HomeComponent } from './home/home.component';
                 path: 'user',
                 loadChildren: 'app/app/user/user.module#UserModule'
             },
-        /*
             {
                 path: 'order',
-                loadChildren: 'app/order/order.module#OrderModule'
+                loadChildren: 'app/app/order/order.module#OrderModule'
             },
+        /*
             {
                 path: 'order-overview',
                 loadChildren: 'app/order-overview/order-overview.module#OrderOverviewModule'

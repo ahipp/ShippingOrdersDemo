@@ -3,7 +3,8 @@
 @Component({
     template: `
         <h1>Welcome to the homepage</h1>
-        <a [routerLink]="['/user/new']">Create new user</a>
+        <div><a [routerLink]="['/user/new']">Create new user</a></div>
+        <div><a [routerLink]="['/order/new']">Create new order</a></div>
     `
 })
 export class HomeComponent {
