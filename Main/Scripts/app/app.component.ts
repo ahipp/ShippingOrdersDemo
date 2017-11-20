@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'my-app',
+  selector: 'system-app',
   template: `
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
             </ul>
         </div>
     </nav>
-    <router-outlet></router-outlet>
+    <div class="body-content">
+        <router-outlet></router-outlet>
+    </div>
   ` }) 
 export class AppComponent { }

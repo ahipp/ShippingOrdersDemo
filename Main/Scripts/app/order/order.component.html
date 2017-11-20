@@ -1,43 +1,76 @@
 ﻿<h1>{{(this.newOrder) ? 'Create New' : 'Edit'}} Order</h1>
-<form #orderForm="ngForm" (ngSubmit)="onSubmit()">
-    <div>
+<form #orderForm="ngForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <div class="form-group form-group-lg">
         <ng-container *ngIf="newOrder">
-            User: <select [(ngModel)]="order.UserID" #userID="ngModel" name="userID" required>
-                <option *ngFor="let item of userDropdownList" [ngValue]="item.Value">{{item.Label}}</option>
-            </select>
-            <span *ngIf="submitted && !userID.value" style="color: red;">* Required</span>
+            <label for="userID" class="control-label col-lg-2">User: </label>
+            <div class="col-lg-10">
+                <select [(ngModel)]="order.UserID" #userID="ngModel" name="userID" 
+                        class="form-control input-lg" id="userID" required>
+                    <option *ngFor="let item of userDropdownList" [ngValue]="item.Value">{{item.Label}}</option>
+                </select>
+                <span *ngIf="submitted && !userID.value" style="color: red;">* Required</span>
+            </div>
         </ng-container>
         <ng-container *ngIf="!newOrder">
-            User: {{getUserFromDropdownList(order.UserID).Label}}
-            <input type="hidden" [(ngModel)]="order.UserID" #userID="ngModel" name="userID" />
+            <label for="userID" class="control-label col-lg-2">
+                User:
+            </label>
+            <div class="col-lg-10">
+                <div class="form-control input-lg" id="userID">{{getUserFromDropdownList(order.UserID).Label}}</div>
+                <input type="hidden" [(ngModel)]="order.UserID" #userID="ngModel" name="userID" />
+            </div>   
         </ng-container>
     </div>
-    <div>
-        TrackingID: <input type="text" [(ngModel)]="order.TrackingID" #trackingID="ngModel" name="trackingID" required />
-        <span *ngIf="submitted && trackingID.errors && trackingID.errors.required" style="color: red;">* Required</span>
+    <div class="form-group">
+        <label for="trackingID" class="control-label col-lg-2">TrackingID: </label>
+        <div class="col-lg-10">
+            <input type="text" [(ngModel)]="order.TrackingID" #trackingID="ngModel" name="trackingID" 
+               class="form-control input-lg" id="trackingID" required />
+            <span *ngIf="submitted && trackingID.errors && trackingID.errors.required" style="color: red;">* Required</span>
+        </div>
     </div>
-    <div>
-        Name: <input type="text" [(ngModel)]="order.Name" #name="ngModel" name="name" required />
-        <span *ngIf="submitted && name.errors && name.errors.required" style="color: red;">* Required</span>
+    <div class="form-group">
+        <label for="name" class="control-label col-lg-2">Name: </label>
+        <div class="col-lg-10">
+            <input type="text" [(ngModel)]="order.Name" #name="ngModel" name="name" 
+                   class="form-control input-lg" id="name" required />
+            <span *ngIf="submitted && name.errors && name.errors.required" style="color: red;">* Required</span>
+        </div>
     </div>
-    <div>
-        Address: <input type="text" [(ngModel)]="order.Address" #address="ngModel" name="address" required />
-        <span *ngIf="submitted && address.errors && address.errors.required" style="color: red;">* Required</span>
+    <div class="form-group">
+        <label for="address" class="control-label col-lg-2">Address: </label>
+        <div class="col-lg-10">
+            <input type="text" [(ngModel)]="order.Address" #address="ngModel" name="address" 
+                   class="form-control input-lg" id="address" required />
+            <span *ngIf="submitted && address.errors && address.errors.required" style="color: red;">* Required</span>
+        </div>
     </div>
-    <div>
-        City: <input type="text" [(ngModel)]="order.City" #city="ngModel" name="city" required />
-        <span *ngIf="submitted && city.errors && city.errors.required" style="color: red;">* Required</span>
+    <div class="form-group">
+        <label for="city" class="control-label col-lg-2">City: </label>
+        <div class="col-lg-10">
+            <input type="text" [(ngModel)]="order.City" #city="ngModel" name="city" 
+                   class="form-control input-lg" id="city" required />
+            <span *ngIf="submitted && city.errors && city.errors.required" style="color: red;">* Required</span>
+        </div>
     </div>
-    <div>
-        State: <input type="text" [(ngModel)]="order.State" #state="ngModel" name="state" required />
-        <span *ngIf="submitted && state.errors && state.errors.required" style="color: red;">* Required</span>
+    <div class="form-group">
+        <label for="state" class="control-label col-lg-2">State: </label>
+        <div class="col-lg-10">
+            <input type="text" [(ngModel)]="order.State" #state="ngModel" name="state" 
+                   class="form-control input-lg" id="state" required />
+            <span *ngIf="submitted && state.errors && state.errors.required" style="color: red;">* Required</span>
+        </div>
     </div>
-    <div>
-        Zip Code: <input type="text" [(ngModel)]="order.ZipCode" #zipCode="ngModel" name="zipCode" required />
-        <span *ngIf="submitted && zipCode.errors && zipCode.errors.required" style="color: red;">* Required</span>
+    <div class="form-group">
+        <label for="zipCode" class="control-label col-lg-2">Zip Code: </label>
+        <div class="col-lg-10">
+            <input type="text" [(ngModel)]="order.ZipCode" #zipCode="ngModel" name="zipCode" 
+                   class="form-control input-lg" id="zipCode" required />
+            <span *ngIf="submitted && zipCode.errors && zipCode.errors.required" style="color: red;">* Required</span>
+        </div>
     </div>
-    <button type="submit" [disabled]="processing">{{processing ? 'Processing' : 'Save'}}</button>
-    <input *ngIf="!newOrder" type="button" value="Back to View Orders" [routerLink]="['/user-orders']">
+    <button type="submit" class="btn btn-primary" [disabled]="processing">{{processing ? 'Processing' : 'Save'}}</button>
+    <input *ngIf="!newOrder" type="button" class="btn" value="Back to View Orders" [routerLink]="['/user-orders']">
     <div>{{notification}}</div>
 </form>
 

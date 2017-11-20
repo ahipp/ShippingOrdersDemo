@@ -2,12 +2,18 @@
 
 @Component({
     template: `
-        <h1>Welcome to the homepage</h1>
-        <div><a [routerLink]="['/user/new']">Create new user</a></div>
-        <div><a [routerLink]="['/order/new']">Create new order</a></div>
-        <div><a [routerLink]="['/user-orders']">View/Edit orders</a></div>
+        <h1>Adam Hipp's Assessment</h1>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a [routerLink]="['/user/new']">Create new user</a>
+            </li>
+            <li class="list-group-item">
+                <a [routerLink]="['/order/new']">Create new order</a>
+            </li>
+            <li class="list-group-item">
+                <a [routerLink]="['/user-orders']">View/Edit orders</a>
+            </li>
+        </ul>
     `
 })
-export class HomeComponent {
-
-}
+export class HomeComponent { }

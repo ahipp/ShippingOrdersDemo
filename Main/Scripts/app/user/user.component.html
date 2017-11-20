@@ -1,14 +1,22 @@
 ﻿<h1>{{(this.newUser) ? 'Create New' : 'Edit'}} User</h1>
-<form #userForm="ngForm" (ngSubmit)="onSubmit()">
-    <div>
-        First name: <input type="text" [(ngModel)]="user.FirstName" #firstName="ngModel" name="firstName" required />
-        <span *ngIf="submitted && firstName.errors && firstName.errors.required" style="color: red;">* Required</span>
+<form #userForm="ngForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <div class="form-group form-group-lg">
+        <label for="firstName" class="control-label col-lg-2">First name: </label>
+        <div class="col-lg-10">
+            <input type="text" [(ngModel)]="user.FirstName" #firstName="ngModel" name="firstName"
+                   class="form-control input-lg" id="firstName" required />
+            <span *ngIf="submitted && firstName.errors && firstName.errors.required" style="color: red;">* Required</span>
+        </div>
     </div>
-    <div>
-        Last name: <input type="text" [(ngModel)]="user.LastName" #lastName="ngModel" name="lastName" required />
-        <span *ngIf="submitted && lastName.errors && lastName.errors.required" style="color: red;">* Required</span>
+    <div class="form-group form-group-lg">
+        <label for="lastName" class="control-label col-lg-2">Last name: </label>
+        <div class="col-lg-10">
+            <input type="text" [(ngModel)]="user.LastName" #lastName="ngModel" name="lastName"
+                   class="form-control input-lg" id="lastName" required />
+            <span *ngIf="submitted && lastName.errors && lastName.errors.required" style="color: red;">* Required</span>
+        </div>
     </div>
-    <button type="submit" [disabled]="processing">{{processing ? 'Processing' : 'Save'}}</button>
+    <button type="submit" class="btn btn-primary" [disabled]="processing">{{processing ? 'Processing' : 'Save'}}</button>
     <div>{{notification}}</div>
 </form>
 
