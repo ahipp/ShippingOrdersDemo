@@ -37,6 +37,7 @@
         <span *ngIf="submitted && zipCode.errors && zipCode.errors.required" style="color: red;">* Required</span>
     </div>
     <button type="submit" [disabled]="processing">{{processing ? 'Processing' : 'Save'}}</button>
+    <input *ngIf="!newOrder" type="button" value="Back to View Orders" [routerLink]="['/user-orders']">
     <div>{{notification}}</div>
 </form>
 
