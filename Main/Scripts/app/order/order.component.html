@@ -1,10 +1,16 @@
 ﻿<h1>{{(this.newOrder) ? 'Create New' : 'Edit'}} Order</h1>
 <form #orderForm="ngForm" (ngSubmit)="onSubmit()">
     <div>
-        User: <select [(ngModel)]="order.UserID" #userID="ngModel" name="userID" required>
-            <option *ngFor="let item of userDropdownList" [ngValue]="item.Value">{{item.Label}}</option>
-        </select>
-        <span *ngIf="submitted && !userID.value" style="color: red;">* Required</span>
+        <ng-container *ngIf="newOrder">
+            User: <select [(ngModel)]="order.UserID" #userID="ngModel" name="userID" required>
+                <option *ngFor="let item of userDropdownList" [ngValue]="item.Value">{{item.Label}}</option>
+            </select>
+            <span *ngIf="submitted && !userID.value" style="color: red;">* Required</span>
+        </ng-container>
+        <ng-container *ngIf="!newOrder">
+            User: {{getUserFromDropdownList(order.UserID).Label}}
+            <input type="hidden" [(ngModel)]="order.UserID" #userID="ngModel" name="userID" />
+        </ng-container>
     </div>
     <div>
         TrackingID: <input type="text" [(ngModel)]="order.TrackingID" #trackingID="ngModel" name="trackingID" required />

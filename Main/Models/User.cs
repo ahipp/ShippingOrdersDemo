@@ -20,6 +20,14 @@ namespace Main.Models
             FirstName = userVM.FirstName;
             LastName = userVM.LastName;
         }
+
+        public UserViewModel CreateViewModel()
+        {
+            UserViewModel userVM = new UserViewModel();
+            userVM.FirstName = FirstName;
+            userVM.LastName = LastName;
+            return userVM;
+        }
         
 		public int UserID { get; set; }
 		public string FirstName { get; set; }

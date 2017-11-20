@@ -1,0 +1,10 @@
+﻿<h1>View/Edit Orders</h1>
+<div>
+    Select User: <select [(ngModel)]="userID" (ngModelChange)="onUserChange()">
+        <option *ngFor="let item of userDropdownList" [ngValue]="item.Value">{{item.Label}}</option>
+    </select>
+</div>
+<h2>Orders for this user</h2>
+<div *ngFor="let order of orders">
+    <a [routerLink]="['/order/' + order.OrderID]">{{order.TrackingID}}</a>
+</div>

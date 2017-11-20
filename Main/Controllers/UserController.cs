@@ -24,7 +24,7 @@ namespace Main.Controllers
             {
                 return HttpNotFound();
             }
-            return Json(user, JsonRequestBehavior.AllowGet);
+            return Json(user.CreateViewModel(), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Order } from '../models/order.model';
 import { DropdownItem } from '../models/dropdown-item.model';
+import { OrderSelection } from '../models/order-selection.model';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -23,4 +24,7 @@ export class OrderService {
         return this.http.post('order/edit/' + this.orderID, order).map(res => res.json());
     }
 
+    getListByUserId(userID: number): Observable<OrderSelection[]> {
+        return this.http.get('order/getlistbyuserid/' + userID).map(res => res.json());
+    }
 }

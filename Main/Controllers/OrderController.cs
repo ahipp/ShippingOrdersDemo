@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Net;
 using System.Web.Mvc;
+using System.Collections.Generic;
 using Main.DAL;
 using Main.Models;
 
@@ -22,9 +23,31 @@ namespace Main.Controllers
             {
                 return HttpNotFound();
             }
-            return Json(order, JsonRequestBehavior.AllowGet);
+            return Json(order.CreateViewModel(), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult GetListByUserId(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            List<OrderSelectItem> orders = new List<OrderSelectItem>();
+            foreach (Order order in user.Orders)
+            {
+                orders.Add(new OrderSelectItem { OrderID = order.OrderID, TrackingID = order.TrackingID });
+            }
+            return Json(orders, JsonRequestBehavior.AllowGet);
+        }
+         
         [HttpPost]
         public ActionResult Create([Bind] OrderViewModel orderVM)
         {

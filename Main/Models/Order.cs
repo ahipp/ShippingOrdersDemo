@@ -20,6 +20,19 @@
             ZipCode = orderVM.ZipCode;
         }
 
+        public OrderViewModel CreateViewModel()
+        {
+            OrderViewModel orderVM = new OrderViewModel();
+            orderVM.UserID = UserID;
+            orderVM.TrackingID = TrackingID;
+            orderVM.Name = Name;
+            orderVM.Address = Address;
+            orderVM.City = City;
+            orderVM.State = State;
+            orderVM.ZipCode = ZipCode;
+            return orderVM;
+        }
+
 		public int OrderID { get; set; }
 		public string TrackingID { get; set; }
 		public string Name { get; set; }
@@ -41,5 +54,11 @@
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+    }
+
+    public class OrderSelectItem
+    {
+        public int OrderID { get; set; }
+        public string TrackingID { get; set; }
     }
 }

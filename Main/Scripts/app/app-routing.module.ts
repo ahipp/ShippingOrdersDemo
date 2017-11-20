@@ -13,12 +13,10 @@ import { HomeComponent } from './home/home.component';
                 path: 'order',
                 loadChildren: 'app/app/order/order.module#OrderModule'
             },
-        /*
             {
-                path: 'order-overview',
-                loadChildren: 'app/order-overview/order-overview.module#OrderOverviewModule'
+                path: 'user-orders',
+                loadChildren: 'app/app/user-orders/user-orders.module#UserOrdersModule'
             },
-        */
             {
                 path: 'home',
                 component: HomeComponent

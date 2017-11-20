@@ -6,7 +6,6 @@ import { Order } from '../models/order.model';
 import { DropdownItem } from '../models/dropdown-item.model';
 import { OrderService } from './order.service';
 
-
 @Component({
     templateUrl: 'Scripts/app/order/order.component.html'
 })
@@ -33,7 +32,7 @@ export class OrderComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        console.log(this.form);
+
         if (this.form.valid && this.form.value['userID']) {
             this.processing = true;
 
@@ -57,5 +56,10 @@ export class OrderComponent implements OnInit {
                 () => this.processing = false
             );
         }
+    }
+
+    getUserFromDropdownList(userID: number): DropdownItem {
+        let userIDString = userID.toString();
+        return this.userDropdownList.find(x => x.Value === userIDString);
     }
 }
