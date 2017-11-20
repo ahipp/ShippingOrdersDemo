@@ -3,22 +3,34 @@ using System.Net;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using Main.DAL;
+using Main.DAL.Interfaces;
 using Main.Models;
 
 namespace Main.Controllers
 {
     public class OrderController : Controller
     {
-        private OrderSystemContext db = new OrderSystemContext();
+        private OrderSystemContext db;
+        private IOrderDAL orderDAL;
+
+        public OrderController()
+        {
+            db = new OrderSystemContext();
+            orderDAL = new OrderDAL(db); 
+        }
+
+        public OrderController(IOrderDAL orderDAL)
+        {
+            db = new OrderSystemContext();
+            this.orderDAL = orderDAL;
+        }
 
         [HttpGet]
         public ActionResult GetById(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = db.Orders.Find(id);
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            Order order = orderDAL.Get(id.Value);
             if (order == null)
             {
                 return HttpNotFound();
@@ -29,21 +41,15 @@ namespace Main.Controllers
         [HttpGet]
         public ActionResult GetListByUserId(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
             List<OrderSelectItem> orders = new List<OrderSelectItem>();
-            foreach (Order order in user.Orders)
+            foreach (Order order in orderDAL.GetListByUserID(id.Value))
             {
-                orders.Add(new OrderSelectItem { OrderID = order.OrderID, TrackingID = order.TrackingID });
+                orders.Add(new OrderSelectItem {
+                    OrderID = order.OrderID,
+                    TrackingID = order.TrackingID
+                });
             }
             return Json(orders, JsonRequestBehavior.AllowGet);
         }
@@ -53,10 +59,7 @@ namespace Main.Controllers
         {
             if (ModelState.IsValid)
             {
-                Order order = new Order(orderVM);
-
-                db.Orders.Add(order);
-                db.SaveChanges();
+                orderDAL.AddFromViewModel(orderVM);
                 return Json(orderVM, JsonRequestBehavior.AllowGet);
             }
 
@@ -66,22 +69,11 @@ namespace Main.Controllers
         [HttpPost]
         public ActionResult Edit(int? id, [Bind] OrderViewModel orderVM)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
             if (ModelState.IsValid)
             {
-                Order order = db.Orders.Find(id);
-                if (order == null)
-                {
-                    return HttpNotFound();
-                }
-                order.PopulateFromVM(orderVM);
-
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
+                orderDAL.UpdateFromViewModel(id.Value, orderVM);
                 return Json(orderVM, JsonRequestBehavior.AllowGet);
             }
 
